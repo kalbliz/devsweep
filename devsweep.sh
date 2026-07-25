@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Dev cache cleanup for macOS / Linux.
+# devsweep - cache cleanup for macOS / Linux.
 # Compatible with Bash 3.2+ (macOS /bin/bash).
 #
 # Run from your projects parent folder (or a single project root):
@@ -159,7 +159,7 @@ trap cleanup_temp EXIT
 
 is_skipped_name() {
   case "$1" in
-    .idea|.qodo|.git|.vscode|Screenshots|node_modules|build|.dart_tool|.gradle|.fvm|dist|out|Pods|coverage|.next|.nuxt|.turbo|devsweep)
+    .idea|.qodo|.git|.vscode|Screenshots|node_modules|build|.dart_tool|.gradle|.fvm|dist|out|Pods|coverage|.next|.nuxt|.turbo|devsweep|cleanup-dev-caches)
       return 0
       ;;
     *)
@@ -547,7 +547,7 @@ TARGETS_FILE=$(mktemp)
 : > "$TARGETS_FILE"
 
 echo ""
-echo "Dev cache cleanup"
+echo "devsweep"
 echo "Root:  $ROOT"
 scan_label="Flutter · FVM · Node · Gradle"
 if [ "$INCLUDE_GLOBAL" -eq 1 ]; then

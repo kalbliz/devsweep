@@ -469,7 +469,7 @@ function Get-CandidateProjectDirs {
     $skipNames = @(
         '.idea', '.qodo', '.git', '.vscode', 'Screenshots', 'node_modules',
         'build', '.dart_tool', '.gradle', '.fvm', 'dist', 'out', 'Pods',
-        'coverage', '.next', '.nuxt', '.turbo', 'devsweep',
+        'coverage', '.next', '.nuxt', '.turbo', 'devsweep', 'cleanup-dev-caches',
         'lib', 'test', 'tests', 'assets', 'images', 'fonts', 'docs', 'doc',
         'tool', 'tools', 'scripts', 'web', 'windows', 'linux', 'macos', 'ios', 'android',
         '.stitch_inspect', 'ephemeral'
