@@ -99,18 +99,18 @@ interactive, cross-platform, and biased toward safety.
 
 ---
 
-## Introducing `cleanup-dev-caches`
+## Introducing **devsweep**
 
-[`cleanup-dev-caches`](https://github.com/kalbliz/cleanup-dev-caches) is a small
+[`devsweep`](https://github.com/kalbliz/devsweep) is a small
 PowerShell + Bash toolkit you drop beside your repos.
 
 ```text
 StudioProjects/
   kodak/
   my-api/
-  cleanup-dev-caches/
-    cleanup-dev-caches.ps1
-    cleanup-dev-caches.sh
+  devsweep/
+    devsweep.ps1
+    devsweep.sh
     README.md
 ```
 
@@ -141,8 +141,8 @@ You run it from the **projects parent folder** (or a single project root).
 
 | OS | Entry point |
 |----|-------------|
-| Windows | `.\cleanup-dev-caches\cleanup-dev-caches.ps1` |
-| macOS / Linux | `./cleanup-dev-caches/cleanup-dev-caches.sh` |
+| Windows | `.\devsweep\devsweep.ps1` |
+| macOS / Linux | `./devsweep/devsweep.sh` |
 
 ---
 
@@ -170,7 +170,7 @@ User Gradle caches, pub hosted cache, global FVM versions.
 Clean these when the disk is critical and you understand the rebuild tax
 will hit *every* project, not just one.
 
-`cleanup-dev-caches` defaults to layers 1–2.
+`devsweep` defaults to layers 1–2.
 Layer 3 requires an explicit flag.
 
 ---
@@ -181,15 +181,15 @@ Layer 3 requires an explicit flag.
 
 ```powershell
 cd C:\Users\You\StudioProjects
-.\cleanup-dev-caches\cleanup-dev-caches.ps1
+.\devsweep\devsweep.ps1
 ```
 
 ### macOS / Linux
 
 ```bash
 cd ~/StudioProjects
-chmod +x cleanup-dev-caches/cleanup-dev-caches.sh
-./cleanup-dev-caches/cleanup-dev-caches.sh
+chmod +x devsweep/devsweep.sh
+./devsweep/devsweep.sh
 ```
 
 Review the dry-run list.
@@ -237,7 +237,7 @@ Treat it like dependency debt: invisible until it blocks the next ship.
 
 ## Get the tool
 
-- GitHub: [https://github.com/kalbliz/cleanup-dev-caches](https://github.com/kalbliz/cleanup-dev-caches)
+- GitHub: [https://github.com/kalbliz/devsweep](https://github.com/kalbliz/devsweep)
 - Clone it into your projects parent folder, or copy the directory beside your repos.
 - Read `README.md` for flags, safety notes, and team sharing.
 

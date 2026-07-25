@@ -1,4 +1,4 @@
-# Dev cache cleanup
+# devsweep
 
 Frees disk space by removing rebuildable Flutter, Node, Gradle, and FVM caches across a folder of projects.
 
@@ -12,9 +12,9 @@ Frees disk space by removing rebuildable Flutter, Node, Gradle, and FVM caches a
 StudioProjects/                 ← cd here, then run the script
   kodak/
   my-api/
-  cleanup-dev-caches/           ← this folder
-    cleanup-dev-caches.ps1
-    cleanup-dev-caches.sh
+  devsweep/           ← this folder
+    devsweep.ps1
+    devsweep.sh
     README.md
 ```
 
@@ -36,17 +36,17 @@ Source code, lockfiles, and FVM config are not deleted.
 
 ```powershell
 cd <your-projects-folder>
-.\cleanup-dev-caches\cleanup-dev-caches.ps1
+.\devsweep\devsweep.ps1
 ```
 
 Interactive flow: dry-run list → choose **A** (all), **S** (specific numbers), **K** (by kind), or **Q** (quit). Deletion always asks you to type `YES`.
 
 ```powershell
 # Also list shared machine caches (use with care)
-.\cleanup-dev-caches\cleanup-dev-caches.ps1 -IncludeGlobalCaches
+.\devsweep\devsweep.ps1 -IncludeGlobalCaches
 
 # Non-interactive (CI / scripts)
-.\cleanup-dev-caches\cleanup-dev-caches.ps1 -Apply -Force
+.\devsweep\devsweep.ps1 -Apply -Force
 ```
 
 If execution is blocked:
@@ -54,21 +54,21 @@ If execution is blocked:
 ```powershell
 Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 # or one-shot:
-powershell -ExecutionPolicy Bypass -File .\cleanup-dev-caches\cleanup-dev-caches.ps1
+powershell -ExecutionPolicy Bypass -File .\devsweep\devsweep.ps1
 ```
 
 ## macOS / Linux (Bash)
 
 ```bash
 cd <your-projects-folder>
-chmod +x cleanup-dev-caches/cleanup-dev-caches.sh   # once
-./cleanup-dev-caches/cleanup-dev-caches.sh
+chmod +x devsweep/devsweep.sh   # once
+./devsweep/devsweep.sh
 ```
 
 ```bash
-./cleanup-dev-caches/cleanup-dev-caches.sh --global
-./cleanup-dev-caches/cleanup-dev-caches.sh --apply --force
-./cleanup-dev-caches/cleanup-dev-caches.sh --root /path/to/projects
+./devsweep/devsweep.sh --global
+./devsweep/devsweep.sh --apply --force
+./devsweep/devsweep.sh --root /path/to/projects
 ```
 
 Requires `du` (standard). Deep trees are removed with `rm -rf`.
@@ -92,8 +92,8 @@ Then you can choose:
 
 After each delete, the script writes:
 
-- `cleanup-dev-caches/last-report.html` – always the latest run  
-- `cleanup-dev-caches/reports/report-YYYYMMDD-HHMMSS.html` – timestamped copy  
+- `devsweep/last-report.html` – always the latest run  
+- `devsweep/reports/report-YYYYMMDD-HHMMSS.html` – timestamped copy  
 
 Open `last-report.html` in a browser to see status, space freed, and every deleted/failed path.
 
@@ -116,8 +116,8 @@ Open `last-report.html` in a browser to see status, space freed, and every delet
 
 ## Sharing with a team
 
-Copy the whole `cleanup-dev-caches/` folder into your projects parent directory (or a shared tooling repo):
+Copy the whole `devsweep/` folder into your projects parent directory (or a shared tooling repo):
 
-- `cleanup-dev-caches.ps1` — Windows
-- `cleanup-dev-caches.sh` — macOS / Linux
+- `devsweep.ps1` — Windows
+- `devsweep.sh` — macOS / Linux
 - `README.md` — this file

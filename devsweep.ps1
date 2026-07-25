@@ -1,19 +1,19 @@
 <#
 .SYNOPSIS
-  Interactive cleanup of Flutter / Node / Gradle / FVM build & cache folders.
+  devsweep - interactive cleanup of Flutter / Node / Gradle / FVM build & cache folders.
 
 .DESCRIPTION
   Run this from your projects parent folder (the directory that contains your
   repos), for example:
 
     cd ~/StudioProjects
-    .\cleanup-dev-caches\cleanup-dev-caches.ps1
+    .\devsweep\devsweep.ps1
 
   It scans child projects (and common monorepo nests), lists reclaimable
   folders with sizes, then lets you delete all or pick specific entries.
 
-  macOS / Linux twin: ./cleanup-dev-caches/cleanup-dev-caches.sh
-  Docs: ./cleanup-dev-caches/README.md
+  macOS / Linux twin: ./devsweep/devsweep.sh
+  Docs: ./devsweep/README.md
 
   Targets (when present):
     Flutter  - build, .dart_tool
@@ -39,10 +39,10 @@
 
 .EXAMPLE
   cd C:\Users\You\StudioProjects
-  .\cleanup-dev-caches\cleanup-dev-caches.ps1
+  .\devsweep\devsweep.ps1
 
 .EXAMPLE
-  .\cleanup-dev-caches\cleanup-dev-caches.ps1 -Apply -Force
+  .\devsweep\devsweep.ps1 -Apply -Force
 #>
 
 [CmdletBinding()]
@@ -161,7 +161,7 @@ function Write-HtmlReport {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dev cache cleanup report</title>
+  <title>devsweep report</title>
   <style>
     :root {
       --bg: #f6f7f9;
@@ -279,7 +279,7 @@ function Write-HtmlReport {
 </head>
 <body>
   <main>
-    <h1>Dev cache cleanup report</h1>
+    <h1>devsweep report</h1>
     <p class="meta">
       Generated <strong>$(Escape-Html $when)</strong><br />
       Scan root: <code>$(Escape-Html $ScanRoot)</code>
@@ -453,7 +453,7 @@ function Assert-ValidProjectsRoot {
         Write-Host "or from inside a single Flutter/Node/Android project."
         Write-Host ""
         Write-Host "  cd <your-projects-folder>"
-        Write-Host "  .\cleanup-dev-caches\cleanup-dev-caches.ps1"
+        Write-Host "  .\devsweep\devsweep.ps1"
         Write-Host ""
         Write-Host "Expected markers: pubspec.yaml, package.json, android/, .fvm, build.gradle, ..."
         Write-Host "Current folder: $RootPath"
@@ -469,7 +469,7 @@ function Get-CandidateProjectDirs {
     $skipNames = @(
         '.idea', '.qodo', '.git', '.vscode', 'Screenshots', 'node_modules',
         'build', '.dart_tool', '.gradle', '.fvm', 'dist', 'out', 'Pods',
-        'coverage', '.next', '.nuxt', '.turbo', 'cleanup-dev-caches',
+        'coverage', '.next', '.nuxt', '.turbo', 'devsweep',
         'lib', 'test', 'tests', 'assets', 'images', 'fonts', 'docs', 'doc',
         'tool', 'tools', 'scripts', 'web', 'windows', 'linux', 'macos', 'ios', 'android',
         '.stitch_inspect', 'ephemeral'
@@ -1027,7 +1027,7 @@ try {
     Assert-ValidProjectsRoot -RootPath $Root
 
     Write-Host ""
-    Write-Host "Dev cache cleanup" -ForegroundColor Cyan
+    Write-Host "devsweep" -ForegroundColor Cyan
     Write-Host "Root:  $Root"
     Write-Host "Scan:  Flutter / FVM / Node / Gradle$(if ($IncludeGlobalCaches) { ' / Global caches' })"
     Write-Host "Mode:  $(if ($Apply) { 'non-interactive (-Apply)' } else { 'interactive (dry-run -> choose)' })"

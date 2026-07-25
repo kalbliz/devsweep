@@ -4,13 +4,13 @@
 #
 # Run from your projects parent folder (or a single project root):
 #
-#   chmod +x cleanup-dev-caches/cleanup-dev-caches.sh
-#   ./cleanup-dev-caches/cleanup-dev-caches.sh
-#   ./cleanup-dev-caches/cleanup-dev-caches.sh --global
-#   ./cleanup-dev-caches/cleanup-dev-caches.sh --apply --force
-#   ./cleanup-dev-caches/cleanup-dev-caches.sh --root /path/to/projects
+#   chmod +x devsweep/devsweep.sh
+#   ./devsweep/devsweep.sh
+#   ./devsweep/devsweep.sh --global
+#   ./devsweep/devsweep.sh --apply --force
+#   ./devsweep/devsweep.sh --root /path/to/projects
 #
-# See cleanup-dev-caches/README.md
+# See devsweep/README.md
 
 set -u
 
@@ -21,7 +21,7 @@ INCLUDE_GLOBAL=0
 
 usage() {
   cat <<'EOF'
-Usage: ./cleanup-dev-caches.sh [options]
+Usage: ./devsweep.sh [options]
 
   --root <path>   Folder to scan (default: current directory)
   --global        Also list user-level Gradle / Pub / FVM caches
@@ -141,7 +141,7 @@ assert_valid_root() {
   echo "or from inside a single Flutter/Node/Android project."
   echo ""
   echo "  cd <your-projects-folder>"
-  echo "  ./cleanup-dev-caches/cleanup-dev-caches.sh"
+  echo "  ./devsweep/devsweep.sh"
   echo ""
   echo "Current folder: $root"
   exit 1
@@ -159,7 +159,7 @@ trap cleanup_temp EXIT
 
 is_skipped_name() {
   case "$1" in
-    .idea|.qodo|.git|.vscode|Screenshots|node_modules|build|.dart_tool|.gradle|.fvm|dist|out|Pods|coverage|.next|.nuxt|.turbo|cleanup-dev-caches)
+    .idea|.qodo|.git|.vscode|Screenshots|node_modules|build|.dart_tool|.gradle|.fvm|dist|out|Pods|coverage|.next|.nuxt|.turbo|devsweep)
       return 0
       ;;
     *)
