@@ -1,0 +1,7 @@
+# .gitignore
+reports/
+last-report.html
+_test_fixture/
+*.log
+.DS_Store
+Thumbs.db
